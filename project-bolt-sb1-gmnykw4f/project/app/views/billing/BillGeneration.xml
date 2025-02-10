@@ -1,0 +1,49 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Generate Bill">
+    <ActionItem position="right" text="Share" tap="{{ shareBill }}" />
+  </ActionBar>
+
+  <ScrollView>
+    <StackLayout>
+      <StackLayout class="card" padding="16">
+        <Label text="Customer Information" class="h2" />
+        <TextField hint="Name" text="{{ customer.name }}" class="input-field" />
+        <TextField hint="Phone" text="{{ customer.phone }}" keyboardType="phone" class="input-field" />
+        <TextField hint="Email" text="{{ customer.email }}" keyboardType="email" class="input-field" />
+      </StackLayout>
+
+      <StackLayout class="card" padding="16">
+        <Label text="Items" class="h2" />
+        <ListView items="{{ billItems }}">
+          <ListView.itemTemplate>
+            <GridLayout columns="*, auto, auto" class="list-item">
+              <Label text="{{ name }}" col="0" />
+              <Label text="{{ quantity }}" col="1" />
+              <Label text="{{ formattedPrice }}" col="2" />
+            </GridLayout>
+          </ListView.itemTemplate>
+        </ListView>
+      </StackLayout>
+
+      <StackLayout class="card" padding="16">
+        <GridLayout columns="*, auto">
+          <Label text="Subtotal" col="0" />
+          <Label text="{{ formattedSubtotal }}" col="1" />
+        </GridLayout>
+        <GridLayout columns="*, auto">
+          <Label text="Tax" col="0" />
+          <Label text="{{ formattedTax }}" col="1" />
+        </GridLayout>
+        <GridLayout columns="*, auto" class="total">
+          <Label text="Total" col="0" class="h2" />
+          <Label text="{{ formattedTotal }}" col="1" class="h2" />
+        </GridLayout>
+      </StackLayout>
+
+      <StackLayout class="card" padding="16">
+        <Button text="Generate PDF" tap="{{ generatePDF }}" class="primary-button" />
+        <Button text="Send to Customer" tap="{{ sendToCustomer }}" class="secondary-button" />
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+</Page>

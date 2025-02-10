@@ -1,0 +1,24 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="UPI Payment" />
+  
+  <GridLayout rows="auto, *, auto">
+    <StackLayout row="0" class="card" padding="16">
+      <Label text="Amount to Pay" class="h2" />
+      <Label text="{{ formattedAmount }}" class="h1" />
+    </StackLayout>
+
+    <StackLayout row="1" class="card" padding="16">
+      <Image src="{{ qrCodeImage }}" width="300" height="300" />
+      <Label text="Scan QR code to pay" class="text-center" />
+      <GridLayout columns="*, *" marginTop="16">
+        <Button text="Save QR" tap="{{ onSaveQR }}" col="0" class="secondary-button" />
+        <Button text="Share QR" tap="{{ onShareQR }}" col="1" class="secondary-button" />
+      </GridLayout>
+    </StackLayout>
+
+    <StackLayout row="2" class="card" padding="16">
+      <Button text="Check Payment Status" tap="{{ onCheckStatus }}" class="primary-button" />
+      <Button text="Cancel" tap="{{ onCancel }}" class="secondary-button" />
+    </StackLayout>
+  </GridLayout>
+</Page>

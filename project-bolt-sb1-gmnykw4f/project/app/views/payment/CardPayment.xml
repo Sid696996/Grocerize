@@ -1,0 +1,19 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Card Payment" />
+  
+  <StackLayout>
+    <StackLayout class="card" padding="16">
+      <Label text="Amount to Pay" class="h2" />
+      <Label text="{{ formattedAmount }}" class="h1" />
+    </StackLayout>
+
+    <StackLayout class="card" padding="16">
+      <Label text="Tap card or hold device near payment terminal" textWrap="true" />
+      <Image src="res://nfc_icon" width="100" height="100" marginTop="16" />
+      <ActivityIndicator busy="{{ isProcessing }}" />
+      <Label text="{{ status }}" textWrap="true" class="text-center" />
+    </StackLayout>
+
+    <Button text="Cancel" tap="{{ onCancel }}" class="secondary-button" />
+  </StackLayout>
+</Page>

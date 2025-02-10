@@ -1,0 +1,31 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="Select Products">
+    <ActionItem position="right" text="Cart" tap="{{ showCart }}" />
+  </ActionBar>
+
+  <GridLayout rows="auto, *">
+    <SearchBar row="0" hint="Search products..." text="{{ searchQuery }}" />
+    
+    <GridLayout row="1" rows="*, auto">
+      <GridLayout row="0" columns="*, *" class="products-grid">
+        <Repeater items="{{ filteredProducts }}">
+          <Repeater.itemTemplate>
+            <GridLayout class="product-card" tap="{{ $parent.onProductTap }}">
+              <StackLayout>
+                <Image src="{{ image_path }}" height="120" stretch="aspectFill" />
+                <Label text="{{ name }}" class="product-name" />
+                <Label text="{{ formattedPrice }}" class="product-price" />
+              </StackLayout>
+            </GridLayout>
+          </Repeater.itemTemplate>
+        </Repeater>
+      </GridLayout>
+
+      <StackLayout row="1" class="cart-summary" visibility="{{ showCartSummary ? 'visible' : 'collapsed' }}">
+        <Label text="{{ cartItemCount }} items" />
+        <Label text="{{ cartTotal }}" />
+        <Button text="Proceed to Checkout" tap="{{ onCheckout }}" class="primary-button" />
+      </StackLayout>
+    </GridLayout>
+  </GridLayout>
+</Page>

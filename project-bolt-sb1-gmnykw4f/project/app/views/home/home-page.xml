@@ -1,0 +1,48 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+  <ActionBar title="POS System" class="action-bar">
+    <NavigationButton visibility="collapsed" />
+    <ActionItem ios.position="right" android.position="right" tap="{{ onSettings }}">
+      <Label text="&#xf013;" class="fas" />
+    </ActionItem>
+  </ActionBar>
+
+  <GridLayout rows="*, auto">
+    <ScrollView row="0">
+      <StackLayout class="p-20">
+        <GridLayout columns="*, *" rows="auto, auto" class="m-y-20">
+          <Button text="New Sale" tap="{{ onNewSale }}" row="0" col="0" class="primary-button" />
+          <Button text="Products" tap="{{ onProducts }}" row="0" col="1" class="primary-button" />
+          <Button text="Customers" tap="{{ onCustomers }}" row="1" col="0" class="primary-button" />
+          <Button text="History" tap="{{ onHistory }}" row="1" col="1" class="primary-button" />
+        </GridLayout>
+
+        <StackLayout class="card">
+          <Label text="Today's Summary" class="h2 p-10" />
+          <GridLayout columns="*, *" rows="auto, auto" class="p-10">
+            <Label text="Sales" row="0" col="0" />
+            <Label text="{{ todaySales }}" row="0" col="1" class="text-right" />
+            <Label text="Revenue" row="1" col="0" />
+            <Label text="{{ todayRevenue }}" row="1" col="1" class="text-right" />
+          </GridLayout>
+        </StackLayout>
+
+        <StackLayout class="card">
+          <Label text="Recent Transactions" class="h2 p-10" />
+          <ListView items="{{ recentTransactions }}" height="200">
+            <ListView.itemTemplate>
+              <GridLayout columns="*, auto" class="list-item">
+                <StackLayout col="0">
+                  <Label text="{{ customerName }}" class="font-bold" />
+                  <Label text="{{ date }}" class="text-muted" />
+                </StackLayout>
+                <Label text="{{ amount }}" col="1" class="text-right" />
+              </GridLayout>
+            </ListView.itemTemplate>
+          </ListView>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+
+    <Button row="1" text="+ New Transaction" tap="{{ onNewSale }}" class="fab" />
+  </GridLayout>
+</Page>
